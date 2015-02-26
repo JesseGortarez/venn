@@ -58,6 +58,13 @@ module.exports = (grunt) ->
         dest: 'build/images/'
         filter: 'isFile'
       } ]
+      cssmap: files: [ {
+        expand: true
+        flatten: true
+        src: [ 'assets/css/*.map' ]
+        dest: 'build/css/'
+        filter: 'isFile'
+      } ]
     autoprefixer: single_file:
       src: 'assets/css/all.min.css'
       dest: 'build/css/all.min.css'
