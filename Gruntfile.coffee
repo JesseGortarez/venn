@@ -24,6 +24,13 @@ module.exports = (grunt) ->
       ]
       dest: 'assets/js/all.min.js'
     uglify: build: files: 'build/js/all.min.js': [ 'assets/js/all.min.js' ]
+    htmlmin:
+      main:
+        options:
+          removeComments: true
+          collapseWhitespace: true
+        files:
+          'build/': 'assets/*.html'
     watch:
       options: livereload: true
       main:
@@ -106,6 +113,7 @@ module.exports = (grunt) ->
     'coffee'
     'concat'
     'uglify'
+    'htmlmin'
     'copy'
     'connect'
     'watch'
