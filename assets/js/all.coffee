@@ -73,7 +73,7 @@ setAB = []
 allSets = {}
 
 
-# Adds items to their respective sets
+# Adds items to their respective sets + adds cleaner title for retrieval later
 for x in data
   title = x.title
   if title == "Set A"
@@ -97,9 +97,11 @@ for x in data
 )(setA, setB)
 
 allSets.setAB = setAB
+
+# Removing 1 count per item to account for titles in data
 allSetsLength = (setA.length + setB.length + setAB.length) - 3
 
-myFills = [
+fills = [
   "rgb(0, 255, 0)"
   "rgb(255, 255, 0)"
   "rgb(255, 0, 0)"
@@ -107,8 +109,9 @@ myFills = [
 
 count = -1
 for k, v of allSets
+  console.log v
   count++
-  mybackgroundColor = myFills[count]
+  mybackgroundColor = fills[count]
   firstHTML = '<tr><td style="width: 30px; background:'
   secondHTML = ';"></td><td>'
   thirdHTML = '</td><td>'
@@ -147,5 +150,5 @@ drawCircle = (color, move)->
   ctx.fill()
 
 
-drawCircle(myFills[0], moveLeft)
-drawCircle(myFills[1], moveRight)
+drawCircle(fills[0], moveLeft)
+drawCircle(fills[1], moveRight)

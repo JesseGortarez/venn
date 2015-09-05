@@ -1,5 +1,5 @@
 (function() {
-  var allSets, allSetsLength, calculateSimilarity, compareArrays, count, ctx, data, drawCircle, endHTML, firstHTML, i, k, middleVertical, moveLeft, moveRight, myFills, mybackgroundColor, radius, secondHTML, setA, setAB, setB, sim, start, thirdHTML, title, totalHeight, totalWidth, v, venn, x, _i, _j, _k, _len, _len1, _len2, _ref, _ref1;
+  var allSets, allSetsLength, calculateSimilarity, compareArrays, count, ctx, data, drawCircle, endHTML, fills, firstHTML, i, k, middleVertical, moveLeft, moveRight, mybackgroundColor, radius, secondHTML, setA, setAB, setB, sim, start, thirdHTML, title, totalHeight, totalWidth, v, venn, x, _i, _j, _k, _len, _len1, _len2, _ref, _ref1;
 
   data = [
     {
@@ -68,14 +68,15 @@
 
   allSetsLength = (setA.length + setB.length + setAB.length) - 3;
 
-  myFills = ["rgb(0, 255, 0)", "rgb(255, 255, 0)", "rgb(255, 0, 0)"];
+  fills = ["rgb(0, 255, 0)", "rgb(255, 255, 0)", "rgb(255, 0, 0)"];
 
   count = -1;
 
   for (k in allSets) {
     v = allSets[k];
+    console.log(v);
     count++;
-    mybackgroundColor = myFills[count];
+    mybackgroundColor = fills[count];
     firstHTML = '<tr><td style="width: 30px; background:';
     secondHTML = ';"></td><td>';
     thirdHTML = '</td><td>';
@@ -121,8 +122,8 @@
     return ctx.fill();
   };
 
-  drawCircle(myFills[0], moveLeft);
+  drawCircle(fills[0], moveLeft);
 
-  drawCircle(myFills[1], moveRight);
+  drawCircle(fills[1], moveRight);
 
 }).call(this);
