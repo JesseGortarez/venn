@@ -1,3 +1,50 @@
 @import 'reset';
 @import 'vars';
 
+
+.wrapper {
+  display: block;
+  margin: auto;
+  max-width: 80%;
+  text-align: center;
+  padding: 30px;
+  font-family: $font-family;
+  color: darken($grey, 50%);
+}
+
+canvas {
+  display: inline-block;
+  max-width: 75%;
+  vertical-align: top;
+  border: 1px solid $grey;
+}
+
+#diagram {
+  display: inline-block;
+  width: auto;
+  vertical-align: top;
+  > table {
+    td {
+      padding: 10px;
+      border: 1px solid $grey;
+    }
+    tr {
+      &:last-of-type {
+        td {
+          font-weight: 600;
+        }
+      }
+    }
+  }
+}
+@media all and (max-width: $tablet) {
+  #diagram {
+    display: block;
+    margin: auto;
+    margin-top: 30px;
+    width: 100%;
+    > table {
+      width: 100%;
+    }
+  }
+}

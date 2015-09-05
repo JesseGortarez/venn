@@ -18,11 +18,10 @@ module.exports = (grunt) ->
     coffee: compile: files: 'assets/js/all.js': 'assets/js/*.coffee'
     concat: build:
       src: [
-        'bower_components/modernizr/modernizr.js'
         'bower_components/jquery/dist/jquery.min.js'
         'assets/js/all.js'
       ]
-      dest: 'assets/js/all.min.js'
+      dest: 'build/js/all.min.js'
     uglify: build: files: 'build/js/all.min.js': [ 'assets/js/all.min.js' ]
     htmlmin:
       main:
@@ -90,7 +89,7 @@ module.exports = (grunt) ->
     'autoprefixer'
     'coffee'
     'concat'
-    'uglify'
+    # 'uglify'
     'copy'
     'connect'
     'watch'
@@ -102,7 +101,7 @@ module.exports = (grunt) ->
     'autoprefixer'
     'coffee'
     'concat'
-    'uglify'
+    # 'uglify'
     'copy:main'
   ]
 
@@ -115,8 +114,6 @@ module.exports = (grunt) ->
     'uglify'
     'htmlmin'
     'copy'
-    'connect'
-    'watch'
   ]
 
   grunt.registerTask 'copyimages', [ 'copy:images' ]

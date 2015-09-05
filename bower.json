@@ -1,5 +1,5 @@
 {
-  "name": "PROJECT_NAME",
+  "name": "Venn Diagram",
   "version": "0.0.0",
   "authors": [
     "Jesse Gortarez <jgortarez@gmail.com>"
@@ -14,7 +14,6 @@
     "tests"
   ],
   "devDependencies": {
-    "jquery": "~2.1.1",
-    "modernizr": "~2.8.3"
+    "jquery": "~2.1.1"
   }
 }
