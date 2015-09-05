@@ -19,7 +19,7 @@ canvas {
   border: 1px solid $grey;
 }
 
-#diagram {
+#legend {
   display: inline-block;
   width: auto;
   vertical-align: top;
@@ -38,7 +38,10 @@ canvas {
   }
 }
 @media all and (max-width: $tablet) {
-  #diagram {
+  canvas {
+    max-width: 100%;
+  }
+  #legend {
     display: block;
     margin: auto;
     margin-top: 30px;

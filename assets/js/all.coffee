@@ -66,12 +66,10 @@ data = [
   }
 ]
 
-
 setA = []
 setB = []
 setAB = []
 allSets = {}
-
 
 # Adds items to their respective sets + adds cleaner title for retrieval later
 for x in data
@@ -107,18 +105,19 @@ fills = [
   "rgb(255, 0, 0)"
 ]
 
+# Loop through each object and append a table row and cell to the legend for that object's data
 count = -1
 for k, v of allSets
-  console.log v
   count++
   mybackgroundColor = fills[count]
   firstHTML = '<tr><td style="width: 30px; background:'
   secondHTML = ';"></td><td>'
   thirdHTML = '</td><td>'
   endHTML = '</td></tr>'
-  $('#diagram table').append( firstHTML + mybackgroundColor + secondHTML + v[0] + thirdHTML + (v.length - 1) + endHTML )
+  $('#legend table').append( firstHTML + mybackgroundColor + secondHTML + v[0] + thirdHTML + (v.length - 1) + endHTML )
 
-$('#diagram table').append( '<tr><td colspan="2">Selected</td><td>' + allSetsLength + '</td></tr>' )
+# Add the final row with total count
+$('#legend table').append( '<tr><td colspan="2">Selected</td><td>' + allSetsLength + '</td></tr>' )
 
 totalWidth = $('.wrapper canvas').attr('width')
 totalHeight = $('.wrapper canvas').attr('height')
@@ -127,6 +126,7 @@ start = totalWidth / 2
 radius = start / 2
 sim = 0
 
+# Get the value for the intersecting items as a percentage of the whole
 (calculateSimilarity = (a, b , ab)->
   a = a.length
   b = b.length
@@ -135,20 +135,20 @@ sim = 0
   return sim
 )(setA, setB, setAB)
 
+# Start off each circle with 'zero' similarity (sim = 0) and adjust their x values based on the newly calculated value of sim
 moveLeft = (start - ( radius - ( (sim/100) * start ) ) )
 moveRight = (start + ( radius - ( (sim/100) * start ) ) )
-
 
 venn = document.getElementById('venn')
 ctx = venn.getContext('2d')
 
+# Draw our diagram and add fills
 drawCircle = (color, move)->
   ctx.beginPath()
   ctx.globalCompositeOperation = "difference";
   ctx.fillStyle = color
   ctx.arc(move, middleVertical, radius, 0, 2*Math.PI)
   ctx.fill()
-
 
 drawCircle(fills[0], moveLeft)
 drawCircle(fills[1], moveRight)

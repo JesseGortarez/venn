@@ -74,17 +74,16 @@
 
   for (k in allSets) {
     v = allSets[k];
-    console.log(v);
     count++;
     mybackgroundColor = fills[count];
     firstHTML = '<tr><td style="width: 30px; background:';
     secondHTML = ';"></td><td>';
     thirdHTML = '</td><td>';
     endHTML = '</td></tr>';
-    $('#diagram table').append(firstHTML + mybackgroundColor + secondHTML + v[0] + thirdHTML + (v.length - 1) + endHTML);
+    $('#legend table').append(firstHTML + mybackgroundColor + secondHTML + v[0] + thirdHTML + (v.length - 1) + endHTML);
   }
 
-  $('#diagram table').append('<tr><td colspan="2">Selected</td><td>' + allSetsLength + '</td></tr>');
+  $('#legend table').append('<tr><td colspan="2">Selected</td><td>' + allSetsLength + '</td></tr>');
 
   totalWidth = $('.wrapper canvas').attr('width');
 
