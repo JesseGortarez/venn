@@ -21,7 +21,7 @@ module.exports = (grunt) ->
         'bower_components/jquery/dist/jquery.min.js'
         'assets/js/all.js'
       ]
-      dest: 'build/js/all.min.js'
+      dest: 'assets/js/all.min.js'
     uglify: build: files: 'build/js/all.min.js': [ 'assets/js/all.min.js' ]
     htmlmin:
       main:
@@ -89,7 +89,7 @@ module.exports = (grunt) ->
     'autoprefixer'
     'coffee'
     'concat'
-    # 'uglify'
+    'uglify'
     'copy'
     'connect'
     'watch'
@@ -101,7 +101,7 @@ module.exports = (grunt) ->
     'autoprefixer'
     'coffee'
     'concat'
-    # 'uglify'
+    'uglify'
     'copy:main'
   ]
 
