@@ -119,8 +119,16 @@ for k, v of allSets
 # Add the final row with total count
 $('#legend table').append( '<tr><td colspan="2">Selected</td><td>' + allSetsLength + '</td></tr>' )
 
-totalWidth = $('.wrapper canvas').attr('width')
-totalHeight = $('.wrapper canvas').attr('height')
+
+venn = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+venn.setAttribute("height",400)
+venn.setAttribute("width",800)
+venn.setAttribute("id", "venn")
+$('.wrapper').prepend(venn)
+
+
+totalWidth = $('.wrapper svg').attr('width')
+totalHeight = $('.wrapper svg').attr('height')
 middleVertical = totalHeight / 2
 start = totalWidth / 2
 radius = start / 2
@@ -139,13 +147,29 @@ sim = 0
 moveLeft = (start - ( radius - ( (sim/100) * start ) ) )
 moveRight = (start + ( radius - ( (sim/100) * start ) ) )
 
-venn = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-venn.setAttribute("height",400)
-venn.setAttribute("width",800)
-venn.setAttribute("id", "venn")
-$('.wrapper').prepend(venn)
-circles = document.createElementNS("http://www.w3.org/2000/svg", "circle")
-circles.setAttribute("cx",20)
-circles.setAttribute("cy",20)
-circles.setAttribute("r",20)
-venn.appendChild(circles)
+
+# Draw our diagram and add fills
+# drawCircle = (color, move)->
+#   ctx.beginPath()
+#   ctx.globalCompositeOperation = "difference";
+#   ctx.fillStyle = color
+#   ctx.arc(move, middleVertical, radius, 0, 2*Math.PI)
+#   ctx.fill()
+
+
+drawCircle = (color, move, id)->
+  circles = document.createElementNS("http://www.w3.org/2000/svg", "circle")
+  circles.setAttribute("cx", move)
+  circles.setAttribute("cy", middleVertical)
+  circles.setAttribute("r", radius)
+  circles.setAttribute("fill", color)
+  circles.setAttribute("id", id)
+  circles.setAttribute("fill-rule", "evenodd")
+  venn.appendChild(circles)
+
+drawCircle(fills[0], moveLeft, "setA")
+drawCircle(fills[1], moveRight, "setB")
+
+$('svg circle').click ->
+  toLog = $(this).attr('id')
+  console.log toLog

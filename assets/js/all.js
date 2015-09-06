@@ -1,5 +1,5 @@
 (function() {
-  var allSets, allSetsLength, calculateSimilarity, circles, compareArrays, count, data, endHTML, fills, firstHTML, i, k, middleVertical, moveLeft, moveRight, mybackgroundColor, radius, secondHTML, setA, setAB, setB, sim, start, thirdHTML, title, totalHeight, totalWidth, v, venn, x, _i, _j, _k, _len, _len1, _len2, _ref, _ref1;
+  var allSets, allSetsLength, calculateSimilarity, compareArrays, count, data, drawCircle, endHTML, fills, firstHTML, i, k, middleVertical, moveLeft, moveRight, mybackgroundColor, radius, secondHTML, setA, setAB, setB, sim, start, thirdHTML, title, totalHeight, totalWidth, v, venn, x, _i, _j, _k, _len, _len1, _len2, _ref, _ref1;
 
   data = [
     {
@@ -85,9 +85,19 @@
 
   $('#legend table').append('<tr><td colspan="2">Selected</td><td>' + allSetsLength + '</td></tr>');
 
-  totalWidth = $('.wrapper canvas').attr('width');
+  venn = document.createElementNS("http://www.w3.org/2000/svg", "svg");
 
-  totalHeight = $('.wrapper canvas').attr('height');
+  venn.setAttribute("height", 400);
+
+  venn.setAttribute("width", 800);
+
+  venn.setAttribute("id", "venn");
+
+  $('.wrapper').prepend(venn);
+
+  totalWidth = $('.wrapper svg').attr('width');
+
+  totalHeight = $('.wrapper svg').attr('height');
 
   middleVertical = totalHeight / 2;
 
@@ -109,24 +119,26 @@
 
   moveRight = start + (radius - ((sim / 100) * start));
 
-  venn = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+  drawCircle = function(color, move, id) {
+    var circles;
+    circles = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+    circles.setAttribute("cx", move);
+    circles.setAttribute("cy", middleVertical);
+    circles.setAttribute("r", radius);
+    circles.setAttribute("fill", color);
+    circles.setAttribute("id", id);
+    circles.setAttribute("fill-rule", "evenodd");
+    return venn.appendChild(circles);
+  };
 
-  venn.setAttribute("height", 400);
+  drawCircle(fills[0], moveLeft, "setA");
 
-  venn.setAttribute("width", 800);
+  drawCircle(fills[1], moveRight, "setB");
 
-  venn.setAttribute("id", "venn");
-
-  $('.wrapper').prepend(venn);
-
-  circles = document.createElementNS("http://www.w3.org/2000/svg", "circle");
-
-  circles.setAttribute("cx", 20);
-
-  circles.setAttribute("cy", 20);
-
-  circles.setAttribute("r", 20);
-
-  venn.appendChild(circles);
+  $('svg circle').click(function() {
+    var toLog;
+    toLog = $(this).attr('id');
+    return console.log(toLog);
+  });
 
 }).call(this);
