@@ -1,5 +1,5 @@
 (function() {
-  var allSets, allSetsLength, calculateSimilarity, compareArrays, count, ctx, data, drawCircle, endHTML, fills, firstHTML, i, k, middleVertical, moveLeft, moveRight, mybackgroundColor, radius, secondHTML, setA, setAB, setB, sim, start, thirdHTML, title, totalHeight, totalWidth, v, venn, x, _i, _j, _k, _len, _len1, _len2, _ref, _ref1;
+  var allSets, allSetsLength, calculateSimilarity, circles, compareArrays, count, data, endHTML, fills, firstHTML, i, k, middleVertical, moveLeft, moveRight, mybackgroundColor, radius, secondHTML, setA, setAB, setB, sim, start, thirdHTML, title, totalHeight, totalWidth, v, venn, x, _i, _j, _k, _len, _len1, _len2, _ref, _ref1;
 
   data = [
     {
@@ -109,20 +109,24 @@
 
   moveRight = start + (radius - ((sim / 100) * start));
 
-  venn = document.getElementById('venn');
+  venn = document.createElementNS("http://www.w3.org/2000/svg", "svg");
 
-  ctx = venn.getContext('2d');
+  venn.setAttribute("height", 400);
 
-  drawCircle = function(color, move) {
-    ctx.beginPath();
-    ctx.globalCompositeOperation = "difference";
-    ctx.fillStyle = color;
-    ctx.arc(move, middleVertical, radius, 0, 2 * Math.PI);
-    return ctx.fill();
-  };
+  venn.setAttribute("width", 800);
 
-  drawCircle(fills[0], moveLeft);
+  venn.setAttribute("id", "venn");
 
-  drawCircle(fills[1], moveRight);
+  $('.wrapper').prepend(venn);
+
+  circles = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+
+  circles.setAttribute("cx", 20);
+
+  circles.setAttribute("cy", 20);
+
+  circles.setAttribute("r", 20);
+
+  venn.appendChild(circles);
 
 }).call(this);

@@ -12,11 +12,17 @@
   color: darken($grey, 50%);
 }
 
-canvas {
+svg {
   display: inline-block;
   max-width: 75%;
   vertical-align: top;
   border: 1px solid $grey;
+  circle {
+    cursor: pointer;
+    &:hover {
+      opacity: 0.7;
+    }
+  }
 }
 
 #legend {
@@ -38,7 +44,7 @@ canvas {
   }
 }
 @media all and (max-width: $tablet) {
-  canvas {
+  svg {
     max-width: 100%;
   }
   #legend {

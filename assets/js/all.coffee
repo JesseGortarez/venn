@@ -139,16 +139,13 @@ sim = 0
 moveLeft = (start - ( radius - ( (sim/100) * start ) ) )
 moveRight = (start + ( radius - ( (sim/100) * start ) ) )
 
-venn = document.getElementById('venn')
-ctx = venn.getContext('2d')
-
-# Draw our diagram and add fills
-drawCircle = (color, move)->
-  ctx.beginPath()
-  ctx.globalCompositeOperation = "difference";
-  ctx.fillStyle = color
-  ctx.arc(move, middleVertical, radius, 0, 2*Math.PI)
-  ctx.fill()
-
-drawCircle(fills[0], moveLeft)
-drawCircle(fills[1], moveRight)
+venn = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+venn.setAttribute("height",400)
+venn.setAttribute("width",800)
+venn.setAttribute("id", "venn")
+$('.wrapper').prepend(venn)
+circles = document.createElementNS("http://www.w3.org/2000/svg", "circle")
+circles.setAttribute("cx",20)
+circles.setAttribute("cy",20)
+circles.setAttribute("r",20)
+venn.appendChild(circles)
